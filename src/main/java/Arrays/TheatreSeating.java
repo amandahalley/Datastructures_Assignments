@@ -32,6 +32,7 @@ public class TheatreSeating {
                 System.out.println("Seat row " + row + " column " + col + " has been successfully reserved.");
             } else {
                 System.out.println("Seat row " + row + " column " + col + " is unavailable.");
+                availableSeat(); //suggests seat for seat that is unavailable
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid seat.");
