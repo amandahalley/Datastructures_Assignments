@@ -29,9 +29,9 @@ public class TheatreSeating {
         try {
             if (arr[row][col] == Integer.MIN_VALUE) {
                 arr[row][col] = 1; //this reserves the seat
-                System.out.println("Seat row " + row + "column " + col + " has been successfully reserved.");
+                System.out.println("Seat row " + row + " column " + col + " has been successfully reserved.");
             } else {
-                System.out.println("Seat row " + row + "column " + col + " is unavailable.");
+                System.out.println("Seat row " + row + " column " + col + " is unavailable.");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid seat.");
@@ -70,8 +70,13 @@ public class TheatreSeating {
     public void seatingChart() {
         for (int row = 0; row < arr.length; row++) {
             for (int col = 0; col < arr[0].length; col++){
-                System.out.println(arr[row][col] == Integer.MIN_VALUE ? "Available" : "Reserved"); //this gives each seat the title of if they are available or unavailable
+                if (arr[row][col] == Integer.MIN_VALUE) {
+                    System.out.println("Row " + row + " Column " + col + " - Available");
+                } else {
+                    System.out.println("Row " + row + " Column " + col + " - Reserved");
+                }
             }
+            System.out.println();
         }
     }
 
@@ -86,7 +91,7 @@ public class TheatreSeating {
         theatreSeating.seatReserve(1,4);
         theatreSeating.seatReserve(2,2);
         theatreSeating.seatReserve(2,3);
-        theatreSeating.seatReserve(5,1);
+        theatreSeating.seatReserve(0,2);
         theatreSeating.seatReserve(2,5);
 
         //display seating char after reservations
@@ -94,10 +99,14 @@ public class TheatreSeating {
         theatreSeating.seatingChart();
 
         //reserving an already reserved seat
+        System.out.println("Already Reserved: ");
         theatreSeating.seatReserve(2,2);
+        System.out.println();
 
         //cancelling a seat
+        System.out.println("Seat Cancellation:");
         theatreSeating.cancelSeat(1,4);
+        System.out.println();
 
         //updated seat chart
         System.out.println("\nUpdated Seating Chart (cancellation)");
