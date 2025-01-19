@@ -37,5 +37,25 @@ public class QuestionOne {
         }
     }
 
+    // calculate average temperature
+    public double calcAvg() {
+        int sum = 0;
+        for (int temperature : temperatures){
+            sum += temperature;
+        }
+        return (double) sum / temperatures.length;
+    }
+
+    // calculate days above average temperature
+    public int daysAboveAvg(double average) {
+        int count = 0;
+        for (int temperature : temperatures) {
+            if (temperature > average) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 
 }
