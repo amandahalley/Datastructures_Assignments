@@ -6,5 +6,7 @@ package Arrays;
 //2. cancel seats
 //3. retrieve initial seating charting
 
-public class QuestionTwo {
+public class TheatreSeating {
+
+
 }
