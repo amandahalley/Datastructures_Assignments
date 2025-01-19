@@ -38,6 +38,16 @@ public class TheatreSeating {
 
     // suggesting an available seat
     public void availableSeat() {
+        //loop through each row/col, checking if a seat is available
+        for(int row = 0; row < arr.length; row++) {
+            for(int col = 0; col < arr[0].length; col++){
+                if (arr[row][col] == Integer.MIN_VALUE) {
+                    System.out.println("Suggested seat: row " + row + " column " + col);
+                    return;
+                }
+            }
+        }
+        System.out.println("There are currently no seats available");
     }
 
     //cancel seats
