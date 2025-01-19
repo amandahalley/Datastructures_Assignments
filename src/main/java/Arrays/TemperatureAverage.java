@@ -1,7 +1,5 @@
 package Arrays;
 
-import java.util.Arrays;
-
 //Calculate the avarage temperature, and give how many days are above the avarage temperature
 //  1. Take an input from the user (eg. 5)
 //  2. Prompt the user to enter all the 5 numbers (temperature values)
@@ -9,11 +7,11 @@ import java.util.Arrays;
 //  4. Given the avarage temperature, how many of the numbers in the line 2 are above the avarage temperature?
 
 
-public class QuestionOne {
+public class TemperatureAverage {
     int[] temperatures = null;
 
     // initialize array
-    public QuestionOne(int numDays) {
+    public TemperatureAverage(int numDays) {
         temperatures = new int[numDays];
         for (int i = 0; i < temperatures.length; i++) {
             temperatures[i] = Integer.MIN_VALUE;
@@ -55,6 +53,26 @@ public class QuestionOne {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        //creating object for 5 days
+        TemperatureAverage temperatureAverage = new TemperatureAverage(5);
+
+        //use add temperature method to insert temps
+        temperatureAverage.addTemperatures(0, 16);
+        temperatureAverage.addTemperatures(1, 12);
+        temperatureAverage.addTemperatures(2,9);
+        temperatureAverage.addTemperatures(3,19);
+        temperatureAverage.addTemperatures(4,18);
+
+        //average temperature
+        double average = temperatureAverage.calcAvg();
+        System.out.println("The average temperature is: " + average);
+
+        //count days above average
+        int aboveAvg = temperatureAverage.daysAboveAvg(average);
+        System.out.println("There are " + aboveAvg + " days above the average temperature.");
     }
 
 
