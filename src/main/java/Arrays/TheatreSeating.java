@@ -6,6 +6,8 @@ package Arrays;
 //2. cancel seats
 //3. retrieve initial seating charting
 
+import java.lang.reflect.Array;
+
 public class TheatreSeating {
     int [][] arr = null;
 
@@ -51,6 +53,17 @@ public class TheatreSeating {
     }
 
     //cancel seats
-
+    public void cancelSeat(int row, int col){
+        try {
+            if (arr[row][col] == 1) {
+                arr[row][col] = Integer.MIN_VALUE; //seat now available
+                System.out.println("Seat row " + row + " column " + col + " successfully cancelled.");
+            } else {
+                System.out.println("Seat row " + row + " column " + col + " not reserved.");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid seat.");
+        }
+    }
     //retrieve seating chart
 }
