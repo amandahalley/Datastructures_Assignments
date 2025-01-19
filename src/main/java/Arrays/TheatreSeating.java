@@ -22,4 +22,25 @@ public class TheatreSeating {
         }
     }
 
+    //reserve seats
+    public void seatReserve(int row, int col) {
+        try {
+            if (arr[row][col] == Integer.MIN_VALUE) {
+                arr[row][col] = 1; //this reserves the seat
+                System.out.println("Seat row " + row + "column " + col + " has been successfully reserved.");
+            } else {
+                System.out.println("Seat row " + row + "column " + col + "is unavailable.");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid seat.");
+        }
+    }
+
+    // suggesting an available seat
+    public void availableSeat() {
+    }
+
+    //cancel seats
+
+    //retrieve seating chart
 }
