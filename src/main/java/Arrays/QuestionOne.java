@@ -1,5 +1,7 @@
 package Arrays;
 
+import java.util.Arrays;
+
 //Calculate the avarage temperature, and give how many days are above the avarage temperature
 //  1. Take an input from the user (eg. 5)
 //  2. Prompt the user to enter all the 5 numbers (temperature values)
@@ -8,4 +10,13 @@ package Arrays;
 
 
 public class QuestionOne {
+    int[] temperature = null;
+
+    // initialize array
+    public QuestionOne(int numDays) {
+        temperature = new int[numDays];
+        for (int i = 0; i < temperature.length; i++) {
+            temperature[i] = Integer.MIN_VALUE;
+        }
+    }
 }
