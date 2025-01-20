@@ -35,6 +35,17 @@ public class TemperatureAverage {
         }
     }
 
+
+    // display all temperatures recorded
+    public void allTemperatures() {
+        System.out.println();
+        System.out.println("Temperatures recorded: ");
+        for (int temp : temperatures) {
+            System.out.println(temp + " ");
+        }
+        System.out.println();
+    }
+
     // calculate average temperature
     public double calcAvg() {
         int sum = 0;
@@ -66,13 +77,16 @@ public class TemperatureAverage {
         temperatureAverage.addTemperatures(3,19);
         temperatureAverage.addTemperatures(4,18);
 
+        //all temperatures
+        temperatureAverage.allTemperatures();
+
         //average temperature
         double average = temperatureAverage.calcAvg();
         System.out.println("The average temperature is: " + average);
 
         //count days above average
         int aboveAvg = temperatureAverage.daysAboveAvg(average);
-        System.out.println("There are " + aboveAvg + " days above the average temperature.");
+        System.out.println("Number of days above average:  " + aboveAvg );
     }
 
 
