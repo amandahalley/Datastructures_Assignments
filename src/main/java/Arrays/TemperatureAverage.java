@@ -7,8 +7,10 @@ package Arrays;
 //  4. Given the avarage temperature, how many of the numbers in the line 2 are above the avarage temperature?
 
 
+import java.util.Scanner;
+
 public class TemperatureAverage {
-    int[] temperatures = null;
+    int[] temperatures;
 
     // initialize array
     public TemperatureAverage(int numDays) {
@@ -24,10 +26,10 @@ public class TemperatureAverage {
         try {
             if (temperatures[day] == Integer.MIN_VALUE) {
                 temperatures[day] = temperature;
-                System.out.println("Temperature for: " + (day + 1) + " has been recorded.");
+                System.out.println("Temperature for day " + (day + 1) + " has been recorded.");
             } else {
                 //notify user if temperature is already recorded
-               System.out.println("Temperature for: " + (day + 1) + " already exists." );
+               System.out.println("Temperature for day " + (day + 1) + " already exists." );
             }
             // error message for invalid date
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -40,8 +42,12 @@ public class TemperatureAverage {
     public void allTemperatures() {
         System.out.println();
         System.out.println("Temperatures recorded: ");
-        for (int temp : temperatures) {
-            System.out.println(temp + " ");
+        for (int i = 0; i < temperatures.length; i++)  {
+            if (temperatures[i] == Integer.MIN_VALUE) {
+                System.out.println("Day " + (i + 1) + " Not Recorded.");
+            } else {
+                System.out.println("Day " + (i + 1) + ": " + temperatures[i] );
+            }
         }
         System.out.println();
     }
@@ -49,17 +55,21 @@ public class TemperatureAverage {
     // calculate average temperature
     public double calcAvg() {
         int sum = 0;
-        for (int temperature : temperatures){
-            sum += temperature;
+        int count = 0;
+        for (int temperature : temperatures) {
+            if (temperature != Integer.MIN_VALUE) {
+                sum += temperature;
+                count++;
+            }
         }
-        return (double) sum / temperatures.length;
+        return count > 0 ? (double) sum / count : 0;
     }
 
     // calculate days above average temperature
     public int daysAboveAvg(double average) {
         int count = 0;
         for (int temperature : temperatures) {
-            if (temperature > average) {
+            if (temperature != Integer.MIN_VALUE && temperature > average) {
                 count++;
             }
         }
@@ -67,15 +77,23 @@ public class TemperatureAverage {
     }
 
     public static void main(String[] args) {
-        //creating object for 5 days
-        TemperatureAverage temperatureAverage = new TemperatureAverage(5);
+        Scanner scanner = new Scanner(System.in);
 
-        //use add temperature method to insert temps
-        temperatureAverage.addTemperatures(0, 16);
-        temperatureAverage.addTemperatures(1, 12);
-        temperatureAverage.addTemperatures(2,9);
-        temperatureAverage.addTemperatures(3,19);
-        temperatureAverage.addTemperatures(4,18);
+        //ask user for the number of days
+        System.out.print("Enter the number of days you are recording: ");
+        int numberOfDays = scanner.nextInt();
+
+        //creating object for 5 days
+        TemperatureAverage temperatureAverage = new TemperatureAverage(numberOfDays);
+
+
+        // Step 3: Prompt the user to enter temperatures
+        System.out.println("Please enter the temperatures for " + numberOfDays + " days:");
+        for (int i = 0; i < numberOfDays; i++) {
+            System.out.print("Day " + (i +1) + ": ");
+            int temp = scanner.nextInt();
+            temperatureAverage.addTemperatures(i, temp); // Record the temperature
+        }
 
         //all temperatures
         temperatureAverage.allTemperatures();
