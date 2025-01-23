@@ -126,39 +126,3 @@ public class TheatreSeating {
         }
     }
 }
-
-
-
-
-
-
-
-
-//        //reserve seats
-//        theatreSeating.seatReserve(1,4);
-//        theatreSeating.seatReserve(2,2);
-//        theatreSeating.seatReserve(2,3);
-//        theatreSeating.seatReserve(0,2);
-//        theatreSeating.seatReserve(2,5);
-//
-//        //display seating char after reservations
-//        System.out.println("\nReserved Seating Chart:");
-//        theatreSeating.seatingChart();
-//
-//        //reserving an already reserved seat
-//        System.out.println("Already Reserved: ");
-//        theatreSeating.seatReserve(2,2);
-//        System.out.println();
-//
-//        //cancelling a seat
-//        System.out.println("Seat Cancellation:");
-//        theatreSeating.cancelSeat(1,4);
-//        System.out.println();
-//
-//        //updated seat chart
-//        System.out.println("\nUpdated Seating Chart (cancellation)");
-//        theatreSeating.seatingChart();
-
-
-//    }
-//}
