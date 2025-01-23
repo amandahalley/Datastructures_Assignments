@@ -7,6 +7,7 @@ package Arrays;
 //3. retrieve initial seating charting
 
 import java.lang.reflect.Array;
+import java.util.Scanner;
 
 public class TheatreSeating {
     int [][] arr = null;
@@ -82,37 +83,82 @@ public class TheatreSeating {
     }
 
     public static void main(String[] args) {
-        TheatreSeating theatreSeating = new TheatreSeating(5, 5);
+        Scanner scanner = new Scanner(System.in);
 
-        //display seating chart
-        System.out.println("Seating Chart: ");
-        theatreSeating.seatingChart();
+        TheatreSeating theatreSeating = new TheatreSeating(5,5); //setting the rows and columns of the seating chart
 
-        //reserve seats
-        theatreSeating.seatReserve(1,4);
-        theatreSeating.seatReserve(2,2);
-        theatreSeating.seatReserve(2,3);
-        theatreSeating.seatReserve(0,2);
-        theatreSeating.seatReserve(2,5);
+        // interactive menu
+        while (true) {
+            System.out.println("Menu:");
+            System.out.println("1. View Seating Chart");
+            System.out.println("2. Reserve a Seat");
+            System.out.println("3. Cancel a Reservation");
+            System.out.println("4. Exit");
+            System.out.print("Please enter what you would like to do: ");
 
-        //display seating char after reservations
-        System.out.println("\nReserved Seating Chart:");
-        theatreSeating.seatingChart();
-
-        //reserving an already reserved seat
-        System.out.println("Already Reserved: ");
-        theatreSeating.seatReserve(2,2);
-        System.out.println();
-
-        //cancelling a seat
-        System.out.println("Seat Cancellation:");
-        theatreSeating.cancelSeat(1,4);
-        System.out.println();
-
-        //updated seat chart
-        System.out.println("\nUpdated Seating Chart (cancellation)");
-        theatreSeating.seatingChart();
-
-
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("\nSeating Chart:");
+                    theatreSeating.seatingChart();
+                    break;
+                case 2:
+                    System.out.print("Enter row to reserve: ");
+                    int reserveRow = scanner.nextInt();
+                    System.out.print("Enter column to reserve: ");
+                    int reserveCol = scanner.nextInt();
+                    theatreSeating.seatReserve(reserveRow, reserveCol);
+                    break;
+                case 3:
+                    System.out.print("Enter row to cancel: ");
+                    int cancelRow = scanner.nextInt();
+                    System.out.print("Enter column to cancel: ");
+                    int cancelCol = scanner.nextInt();
+                    theatreSeating.cancelSeat(cancelRow, cancelCol);
+                    break;
+                case 4:
+                    System.out.println("Thank you!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+//        //reserve seats
+//        theatreSeating.seatReserve(1,4);
+//        theatreSeating.seatReserve(2,2);
+//        theatreSeating.seatReserve(2,3);
+//        theatreSeating.seatReserve(0,2);
+//        theatreSeating.seatReserve(2,5);
+//
+//        //display seating char after reservations
+//        System.out.println("\nReserved Seating Chart:");
+//        theatreSeating.seatingChart();
+//
+//        //reserving an already reserved seat
+//        System.out.println("Already Reserved: ");
+//        theatreSeating.seatReserve(2,2);
+//        System.out.println();
+//
+//        //cancelling a seat
+//        System.out.println("Seat Cancellation:");
+//        theatreSeating.cancelSeat(1,4);
+//        System.out.println();
+//
+//        //updated seat chart
+//        System.out.println("\nUpdated Seating Chart (cancellation)");
+//        theatreSeating.seatingChart();
+
+
+//    }
+//}
