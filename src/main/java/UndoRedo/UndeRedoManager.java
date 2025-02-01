@@ -17,9 +17,15 @@ public class UndoRedoManager<T> {
 
     }
     private Node currentState;
+
     //Undo operation
     public T undo(){
-        //implement me
+        if (currentState == null || currentState.prev == null) {
+            System.out.println("List does not exist");
+            return null;
+        }
+        currentState = currentState.prev; //move to previous state
+        return currentState.state;
     }
 
     //perform an operation
@@ -33,7 +39,17 @@ public class UndoRedoManager<T> {
         //implement me
     }
 
+
+    //add to list
+    public void addState(T newState) {
+
+    }
+
+
+    //test
     public static void main(String[] args) {
+        UndoRedoManager<String> manager = new UndoRedoManager<>();
+
 
 
     }
