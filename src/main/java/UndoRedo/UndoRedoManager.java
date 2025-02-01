@@ -24,7 +24,7 @@ public class UndoRedoManager<T> {
     //Undo operation
     public T undo() {
         if (currentState == null || currentState.prev == null) {
-            System.out.println("List does not exist");
+            System.out.println("Nothing to undo");
             return null;
         }
         currentState = currentState.prev; //move to previous state
@@ -63,28 +63,31 @@ public class UndoRedoManager<T> {
     public static void main(String[] args) {
         UndoRedoManager<String> manager = new UndoRedoManager<>();
 
-        System.out.println("Adding..:");
+        System.out.println("\nAdding...");
         manager.addState("1");
         manager.addState("2");
         manager.addState("3");
         manager.addState("4");
         manager.addState("5");
 
+        //print current state after additions
+        System.out.println("Current State: " + manager.currentState.state);
+
         // Undo testing
         System.out.println("\nPerforming undo operation:");
-        System.out.println(manager.undo()); //4
-        System.out.println(manager.undo()); //3
-        System.out.println(manager.undo()); //2
-        System.out.println(manager.undo()); //1
-        System.out.println(manager.undo()); //list does not exist
+        System.out.println("*Undo* Current State: " + manager.undo()); //4
+        System.out.println("*Undo* Current State: " + manager.undo()); //3
+        System.out.println("*Undo* Current State: " + manager.undo()); //2
+        System.out.println("*Undo* Current State: " + manager.undo()); //1
+        System.out.println("*Undo* " + manager.undo()); //list does not exist
 
         //redo testing
-        System.out.println("\nPerforming redo operations:");
-        System.out.println(manager.redo()); //2
-        System.out.println(manager.redo()); //3
-        System.out.println(manager.redo()); //4
-        System.out.println(manager.redo()); //5
-        System.out.println(manager.redo()); //nothing to redo
+        System.out.println("\nPerforming redo operation:");
+        System.out.println("*Redo* Current State: " + manager.redo()); //2
+        System.out.println("*Redo* Current State: " + manager.redo()); //3
+        System.out.println("*Redo* Current State: " + manager.redo()); //4
+        System.out.println("*Redo* Current State: " + manager.redo()); //5
+        System.out.println("*Redo* " + manager.redo()); //nothing to redo
 
     }
 }
