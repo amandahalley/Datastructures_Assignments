@@ -37,20 +37,20 @@ public class UndoRedoManager<T> {
         if (currentState != null && currentState.next != null) {
             currentState.next = null;
         }
-            Node newNode = new Node(newState);
-            //first state if list is empty
-            if (currentState == null) {
-                currentState = newNode;
-            } else {
-                currentState.next = newNode; //add new state after current
-                newNode.prev = currentState;
-                currentState = newNode; //set new state as current
-            }
-            size++;
+        Node newNode = new Node(newState);
+        //first state if list is empty
+        if (currentState == null) {
+            currentState = newNode;
+        } else {
+            currentState.next = newNode; //add new state after current
+            newNode.prev = currentState;
+            currentState = newNode; //set new state as current
         }
+        size++;
+    }
 
     //Redo operation
-    public T redo () {
+    public T redo() {
         if (currentState == null || currentState.next == null) {
             System.out.println("Nothing to redo.");
             return null;
@@ -63,7 +63,30 @@ public class UndoRedoManager<T> {
     public static void main(String[] args) {
         UndoRedoManager<String> manager = new UndoRedoManager<>();
 
+        System.out.println("Adding..:");
+        manager.addState("1");
+        manager.addState("2");
+        manager.addState("3");
+        manager.addState("4");
+        manager.addState("5");
 
+        // Undo testing
+        System.out.println("\nPerforming undo operation:");
+        System.out.println(manager.undo()); //4
+        System.out.println(manager.undo()); //3
+        System.out.println(manager.undo()); //2
+        System.out.println(manager.undo()); //1
+        System.out.println(manager.undo()); //list does not exist
+
+        //redo testing
+        System.out.println("\nPerforming redo operations:");
+        System.out.println(manager.redo()); //2
+        System.out.println(manager.redo()); //3
+        System.out.println(manager.redo()); //4
+        System.out.println(manager.redo()); //5
+        System.out.println(manager.redo()); //nothing to redo
+
+    }
 }
 
 
