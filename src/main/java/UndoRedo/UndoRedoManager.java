@@ -89,6 +89,12 @@ public class UndoRedoManager<T> {
         System.out.println("*Redo* Current State: " + manager.redo()); //5
         System.out.println("*Redo* " + manager.redo()); //nothing to redo
 
+        //undo redo undo
+        System.out.println("\nPerforming undo, redo, undo:");
+        System.out.println("*Undo* Current State: " + manager.undo()); //4
+        System.out.println("*Redo* Current State: " + manager.redo()); //5
+        System.out.println("*Undo* Current State: " + manager.undo()); //4
+
     }
 }
 
