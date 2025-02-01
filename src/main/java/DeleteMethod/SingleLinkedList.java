@@ -74,6 +74,14 @@ public class SingleLinkedList {
             tempNode.next = null; //remove last node and update tail to be new last node
             tail = tempNode;
             size --;
+        //delete in the middle
+        } else {
+            Node tempNode = head;
+            for (int i = 0; i < location - 1; i++) { //find node before one to delete
+                tempNode = tempNode.next;
+            }
+            tempNode.next = tempNode.next.next; //removes node to be deleted
+            size--;
         }
 
 
