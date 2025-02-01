@@ -49,6 +49,27 @@ public class SingleLinkedList {
         size++;
     }
 
+    //Deleting a Node from the linked list
+    //0. if the link doesn't exist
+    //1. delete at the beginning
+    //2. delete at the ending
+    //3. delete anywhere
+
+    public void deleteFromLinkedList(int location) {
+        //link doesn't exist
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        //delete at beginning
+        if (location == 0) {
+            head = head.next;
+            size--;
+        }
+
+
+    }
+
     // Traverse a Linked List
     public void traverseLinkedList() {
         if (head == null) {
