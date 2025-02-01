@@ -65,7 +65,17 @@ public class SingleLinkedList {
         if (location == 0) {
             head = head.next;
             size--;
+        //delete at end
+        } else if (location >= size - 1) {
+            Node tempNode = head;
+            for (int i = 0; i < size - 2; i++) { //traverse to second last node
+                tempNode = tempNode.next;
+            }
+            tempNode.next = null; //remove last node and update tail to be new last node
+            tail = tempNode;
+            size --;
         }
+
 
 
     }
