@@ -17,6 +17,7 @@ public class UndoRedoManager<T> {
 
     }
     private Node currentState;
+    private int size;
 
     //Undo operation
     public T undo(){
@@ -30,21 +31,25 @@ public class UndoRedoManager<T> {
 
     //perform an operation
     public void  addState (T newState) {
-        //implement me
-
+        //remove all states if current isnt last
+        if (currentState != null && currentState.next != null) {
+            currentState.next = null;
+            Node newNode = new Node(newState);
+            //first state if list is empty
+            if (currentState == null) {
+                currentState = newNode;
+            } else {
+                currentState.next = newNode; //add new state after current
+                newNode.prev = currentState;
+                currentState = newNode; //set new state as current
+            }
+            size++;
     }
 
     //Redo Operation
     public T redo(){
         //implement me
     }
-
-
-    //add to list
-    public void addState(T newState) {
-
-    }
-
 
     //test
     public static void main(String[] args) {
