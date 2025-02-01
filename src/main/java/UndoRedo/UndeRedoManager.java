@@ -11,16 +11,18 @@ public class UndoRedoManager<T> {
         private T state;
         private Node prev;
         private Node next;
-        private Node (T state) {
+
+        private Node(T state) {
             this.state = state;
         }
 
     }
+
     private Node currentState;
     private int size;
 
     //Undo operation
-    public T undo(){
+    public T undo() {
         if (currentState == null || currentState.prev == null) {
             System.out.println("List does not exist");
             return null;
@@ -30,10 +32,11 @@ public class UndoRedoManager<T> {
     }
 
     //perform an operation
-    public void  addState (T newState) {
+    public void addState(T newState) {
         //remove all states if current isnt last
         if (currentState != null && currentState.next != null) {
             currentState.next = null;
+        }
             Node newNode = new Node(newState);
             //first state if list is empty
             if (currentState == null) {
@@ -44,11 +47,16 @@ public class UndoRedoManager<T> {
                 currentState = newNode; //set new state as current
             }
             size++;
-    }
+        }
 
-    //Redo Operation
-    public T redo(){
-        //implement me
+    //Redo operation
+    public T redo () {
+        if (currentState == null || currentState.next == null) {
+            System.out.println("Nothing to redo.");
+            return null;
+        }
+        currentState = currentState.next; // Move to next state
+        return currentState.state;
     }
 
     //test
@@ -56,6 +64,8 @@ public class UndoRedoManager<T> {
         UndoRedoManager<String> manager = new UndoRedoManager<>();
 
 
-
-    }
 }
+
+
+
+
