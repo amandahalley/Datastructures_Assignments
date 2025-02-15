@@ -37,45 +37,98 @@ public class AnimalShelter {
         return (nItems == 0);
     }
 
-    //enqueue a dog into the shelter
-   public void enqueueDog(Dog dog) {
+    //add a dog into the shelter
+    public void enqueueDog(Dog dog) {
         if (isFull()) {
             System.out.println("Animal shelter is full.");
-        } else if (isEmpty()) {
-            frontOfQueue = 0;
+        } else {
+            if (isEmpty()) {
+                frontOfQueue = 0;
+            }
             backOfQueue++;
             dog.setOrder(order++);
             arr[backOfQueue] = dog;
-            System.out.println();
+            nItems++;
             System.out.println("Dog " + dog.getName() + " added to Animal Shelter");
-        } else {
-            backOfQueue++;
-            nItems++;
-            dog.setOrder(order++);
-            arr[backOfQueue] = dog;
-            System.out.println("Dog" + dog.getName() + " added to Animal Shelte");
-        }
-   }
-
-    //enqueue a cat into the shelter
-    public void enqueueCat(Cat cat) {
-        if (isFull()) {
-            System.out.println("Animal shelter is full.");
-        } else if (isEmpty()) {
-            frontOfQueue = 0;
-            backOfQueue++;
-            cat.setOrder(order++);
-            arr[backOfQueue] = cat;
-            System.out.println();
-            System.out.println("Cat " + cat.getName() + " added to Animal Shelter");
-        } else {
-            backOfQueue++;
-            nItems++;
-            cat.setOrder(order++);
-            arr[backOfQueue] = cat;
-            System.out.println("Cat" + cat.getName() + " added to Animal Shelte");
         }
     }
 
+    //add a cat into the shelter
+    public void enqueueCat(Cat cat) {
+        if (isFull()) {
+            System.out.println("Animal shelter is full.");
+        } else {
+            if (isEmpty()) {
+                frontOfQueue = 0;
+            }
+            backOfQueue++;
+            cat.setOrder(order++);
+            arr[backOfQueue] = cat;
+            nItems++;
+            System.out.println("Cat " + cat.getName() + " added to Animal Shelter");
+        }
+    }
+
+    //adopt oldest dog from shelter
+    public Dog dequeueDog() {
+        Dog result = null;
+        if (isEmpty()) {
+            System.out.println("The shelter is empty.");
+        } else {
+            for (int i = frontOfQueue; i <= backOfQueue; i++) {
+                if (arr[i] instanceof Dog) {
+                    result = (Dog) arr[i];
+                    frontOfQueue++;
+
+                    if (frontOfQueue > backOfQueue) {
+                        frontOfQueue = backOfQueue = -1;
+                    }
+                    nItems--;
+                    System.out.println("dog" + result.getName() + "is adopted!");
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    //adopt oldest cat from shelter
+    public Cat dequeueCat() {
+        Cat result = null;
+        if (isEmpty()) {
+            System.out.println("The shelter is empty.");
+        } else {
+            for (int i = frontOfQueue; i <= backOfQueue; i++) {
+                if (arr[i] instanceof Cat) {
+                    result = (Cat) arr[i];
+                    frontOfQueue++;
+                    if (frontOfQueue > backOfQueue) {
+                        frontOfQueue = backOfQueue = -1;
+                    }
+                    nItems--;
+                    System.out.println("cat" + result.getName() + "is adopted!");
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    //adopt any animal from shelter (oldest)
+    public Animal dequeueAny() {
+        Animal result = null;
+        if(isEmpty()) {
+            System.out.println("The shelter is empty");
+        } else {
+            result = arr[frontOfQueue];
+            frontOfQueue++;
+            if (frontOfQueue > backOfQueue) {
+                frontOfQueue = backOfQueue = -1;
+            }
+            nItems--;
+            System.out.println(result.getName() + "is adopted!");
+        }
+        return result;
+    }
 }
 
