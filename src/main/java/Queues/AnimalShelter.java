@@ -1,9 +1,5 @@
 package Queues;
 
-
-import java.util.LinkedList;
-import java.util.Queue;
-
 //created queues for storing dogs and cats
 public class AnimalShelter {
     private Animal[] arr;
@@ -18,7 +14,7 @@ public class AnimalShelter {
         this.backOfQueue = -1;
         this.nItems = 0;
         this.order = 0;
-        System.out.println("Animal Shelter created with size of  " + size);
+        System.out.println("Animal Shelter created with max capacity of: " + size);
 
     }
 
@@ -40,7 +36,7 @@ public class AnimalShelter {
     //add a dog into the shelter
     public void enqueueDog(Dog dog) {
         if (isFull()) {
-            System.out.println("Animal shelter is full.");
+            System.out.println("The Animal shelter is currently full.");
         } else {
             if (isEmpty()) {
                 frontOfQueue = 0;
@@ -49,14 +45,14 @@ public class AnimalShelter {
             dog.setOrder(order++);
             arr[backOfQueue] = dog;
             nItems++;
-            System.out.println("Dog " + dog.getName() + " added to Animal Shelter");
+            System.out.println("Dog: " + dog.getName() + " has been added to the Animal Shelter");
         }
     }
 
     //add a cat into the shelter
     public void enqueueCat(Cat cat) {
         if (isFull()) {
-            System.out.println("Animal shelter is full.");
+            System.out.println("The Animal shelter is currently full.");
         } else {
             if (isEmpty()) {
                 frontOfQueue = 0;
@@ -65,7 +61,7 @@ public class AnimalShelter {
             cat.setOrder(order++);
             arr[backOfQueue] = cat;
             nItems++;
-            System.out.println("Cat " + cat.getName() + " added to Animal Shelter");
+            System.out.println("Cat: " + cat.getName() + " has been added to the Animal Shelter!");
         }
     }
 
@@ -73,7 +69,7 @@ public class AnimalShelter {
     public Dog dequeueDog() {
         Dog result = null;
         if (isEmpty()) {
-            System.out.println("The shelter is empty.");
+            System.out.println("The Animal Shelter is currently empty.");
         } else {
             for (int i = frontOfQueue; i <= backOfQueue; i++) {
                 if (arr[i] instanceof Dog) {
@@ -84,7 +80,7 @@ public class AnimalShelter {
                         frontOfQueue = backOfQueue = -1;
                     }
                     nItems--;
-                    System.out.println("dog" + result.getName() + "is adopted!");
+                    System.out.println("You've adopted dog: " + result.getName() + "!");
                     break;
                 }
             }
@@ -96,7 +92,7 @@ public class AnimalShelter {
     public Cat dequeueCat() {
         Cat result = null;
         if (isEmpty()) {
-            System.out.println("The shelter is empty.");
+            System.out.println("The Animal Shelter is empty.");
         } else {
             for (int i = frontOfQueue; i <= backOfQueue; i++) {
                 if (arr[i] instanceof Cat) {
@@ -106,7 +102,7 @@ public class AnimalShelter {
                         frontOfQueue = backOfQueue = -1;
                     }
                     nItems--;
-                    System.out.println("cat" + result.getName() + "is adopted!");
+                    System.out.println("You've adopted cat:" + result.getName() + "!");
                     break;
                 }
             }
@@ -118,7 +114,7 @@ public class AnimalShelter {
     public Animal dequeueAny() {
         Animal result = null;
         if(isEmpty()) {
-            System.out.println("The shelter is empty");
+            System.out.println("The Animal Shelter is empty");
         } else {
             result = arr[frontOfQueue];
             frontOfQueue++;
@@ -126,7 +122,7 @@ public class AnimalShelter {
                 frontOfQueue = backOfQueue = -1;
             }
             nItems--;
-            System.out.println(result.getName() + "is adopted!");
+            System.out.println("You've adopted: " + result.getName() + "!");
         }
         return result;
     }

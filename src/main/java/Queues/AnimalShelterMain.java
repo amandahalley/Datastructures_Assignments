@@ -22,8 +22,8 @@ public class AnimalShelterMain {
         do {
             //create menu
             System.out.println("\nAnimal Shelter Menu:");
-            System.out.println("1. Add Dog to Shelter");
-            System.out.println("2. Add Cat to Shelter");
+            System.out.println("1. Add a Dog to Shelter");
+            System.out.println("2. Add a Cat to Shelter");
             System.out.println("3. Adopt a Dog");
             System.out.println("4. Adopt a Cat");
             System.out.println("5. Adopt Any Animal");
@@ -38,7 +38,7 @@ public class AnimalShelterMain {
                 case 1:
                     boolean addDogs = true;
                     while (addDogs) {
-                        System.out.print("Enter dogs name: ");
+                        System.out.print("Enter the dogs name: ");
                         String dogName = scanner.nextLine();
                         shelter.enqueueDog(new Dog(dogName));
 
@@ -52,7 +52,7 @@ public class AnimalShelterMain {
                 case 2:
                     boolean addCats = true;
                     while (addCats) {
-                        System.out.print("Enter cat name: ");
+                        System.out.print("Enter the cats name: ");
                         String catName = scanner.nextLine();
                         shelter.enqueueCat(new Cat(catName));
 
@@ -78,7 +78,7 @@ public class AnimalShelterMain {
                     scanner.nextLine();
                     break;
                 case 6:
-                    System.out.println("Exiting the shelter system.");
+                    System.out.println("Exiting the Animal Shelter system.");
                     break;
 
                 default:
